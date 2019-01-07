@@ -1,6 +1,6 @@
-<div align="center">
-  <img src="qRNG.png"><br><br>
-</div>
+<p align="center">
+  <img src="qRNG.png" width="450px"/>
+</p>
 
 -----------------
 
@@ -33,7 +33,7 @@ The point of this package then, besides it being a fun side project, is to cut o
 
 ![equation](https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle)
 
-Quantum mechanics ensures that there is a 50-50 chance of measuring the above system as a 0 or 1.
+There is a 50-50 chance of measuring the above system as a 0 or 1 and we continually iterate this measurement for as many random bits as we require.
 
 ### Practicality
 Of course, while the numbers generated from a quantum computer are amongst the most random, the practicality of connecting to one IBM's quantum computers for a large amount of said numbers is nonexistent. For most real world use cases that require such high-caliber random numbers, an off the shelf hardware RNG would suffice.
