@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="qRNG.png" width="450px"/>
+  <img src="qRNG.png" width="475px"/>
 </p>
 
 -----------------
@@ -31,7 +31,9 @@ Indeed, all randomness in the universe (as far we know) is the result of the col
 
 The point of this package then, besides it being a fun side project, is to cut out the middle man entirely, whether it be a radioactive isotope with a known half-life or measuring the thermal noise in your PC, and simply measure an actual quantum system. For example:
 
-![equation](https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle)
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle" title="\left|{\psi}\right\rangle =\frac{1}{\sqrt 2}\left|{0}\right\rangle +\frac{1}{\sqrt 2}\left|{1}\right\rangle" />
+</p>
 
 There is a 50-50 chance of measuring the above system as a 0 or 1 and we continually iterate this measurement for as many random bits as we require.
 
