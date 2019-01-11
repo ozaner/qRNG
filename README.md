@@ -1,13 +1,17 @@
 <p align="center">
-  <img src="qRNG.png" width="475px"/>
+  <img src="https://github.com/ozanerhansha/qRNG/blob/master/qRNG.png?raw=true" width="500px"/>
 </p>
 
 -----------------
 
-**qRNG** is a python package that generates truly random numbers via quantum mechanics. It does this by using IBM's [**QISKit**](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers.
+**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers:
 
-<!-- ### Installation
-You can use the pip package manager to install the current release of qRNG (along with its dependencies):
+- `ibmqx4`
+- `ibmqx5`
+- `ibmqx_16_melborne`
+
+## Installation
+You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
 ```
 pip install qrng
 ```
@@ -15,27 +19,40 @@ pip install qrng
 Upgrading is as simple as:
 ```
 pip install qrng -U
-``` -->
+```
+## Tutorial
+Now you can try generating your first random number. First open python in the shell or use an IDE:
+```shell
+$ python
+```
+Now try generating a random 32-bit integer (note that until a particular quantum computer has been specified, qRNG uses a simulator rather than a real QPC):
+```python
+>>> import qrng
+>>> qrng.get_random_int32()
+3408681298
+```
 
-### What is Random Number Generation?
-There are a variety of applications that require a source of random data in order to work effectively such as simulations or cryptography. To that end, we use random number generators (RNGs) to generate sequences of numbers that are, ideally, indistinguishable from random noise.
+<!-- For a more detailed tutorial, including connecting to quantum hardware, click here. -->
 
-There are two types of RNGs: Pseudo-RNGs (PRNGs) and True RNGs (TRNGs). Pseudo-RNGs, while not truly and statistically random, are used in a variety of applications as their random numbers are 'random enough' for many purposes.
+## What is Random Number Generation?
+There are a variety of applications that require a source of random data in order to work effectively (e.g. simulations and cryptography). To that end, we make use of random number generators (RNGs) to generate sequences of numbers that are, ideally, indistinguishable from random noise.
 
-For a True RNGs, however, an actual piece of hardware is required to measure some random process in the real world as no deterministic computer program could do the same. These devices vary from pieces of radioactive isotopes connected via USB to apparatuses that measure atmospheric noise.
+There are two types of RNGs: Pseudo-RNGs (PRNGs) and True RNGs (TRNGs). Pseudo-RNGs, while not truly and statistically random, are used in a variety of applications as their output is 'random enough' for many purposes.
 
-### Why Quantum?
+For a True RNG, however, an actual piece of hardware is required to measure some random process in the real world as no computer program could suffice due to being deterministic in nature. These devices vary from apparatuses that measure atmospheric noise to pieces of radioactive material connected via USB.
+
+## Why Quantum?
 Modern physics has shown us that there are really only two types of events that can happen in the universe: the unitary transformation of a quantum system, and quantum wavefunction collapse (i.e. **measurement**). The former being a totally deterministic process and the latter being a random one.
 
-Indeed, all randomness in the universe (as far we know) is the result of the collapse of quantum systems upon measurement. In a sense this is the truest form of randomness and the underlying source of it any TRNG.
+Indeed, all randomness in the universe (as far we know) is the result of the collapse of quantum systems upon measurement. In a sense, this is randomness in its purest form and the underlying source of it in any TRNG.
 
-The point of this package then, besides it being a fun side project, is to cut out the middle man entirely, whether it be a radioactive isotope with a known half-life or measuring the thermal noise in your PC, and simply measure an actual quantum system. For example:
+The point of this package then, besides it being a fun side project, is to cut out the middle man entirely, whether it be a radioactive isotope or the thermal noise in your PC, and simply measure an actual quantum system. For example, we can prepare the following state in a quantum computer:
 
 <p align="center">
   <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle" title="\left|{\psi}\right\rangle =\frac{1}{\sqrt 2}\left|{0}\right\rangle +\frac{1}{\sqrt 2}\left|{1}\right\rangle" />
 </p>
 
-There is a 50-50 chance of measuring the above system as a 0 or 1 and we continually iterate this measurement for as many random bits as we require.
+There is a 50-50 chance of measuring the above state as a 0 or 1 and we can continually iterate this process for as many random bits as we require. Note that while such a simple algorithm doesn't require a full-blown quantum computer, there are some random algorithms that do.
 
-### Practicality
-Of course, while the numbers generated from a quantum computer are amongst the most random, the practicality of connecting to one IBM's quantum computers for a large amount of said numbers is nonexistent. For most real world use cases that require such high-caliber random numbers, an off the shelf hardware RNG would suffice.
+## Practicality
+Of course, while the numbers generated from a quantum computer are amongst the most random, the practicality of connecting to one of IBM's quantum computers to generate a large amount of these numbers is nonexistent. For most real world use cases that require such high-caliber random numbers, an off the shelf hardware RNG would suffice. The purpose of this package is thus to provide a working example of how a real cloud based quantum random number generator may operate.
