@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://github.com/ozanerhansha/qRNG/blob/master/qRNG.png?raw=true" width="450px"/>
+  <img src="https://github.com/ozanerhansha/qRNG/blob/master/qRNG.png?raw=true" width="500px"/>
 </p>
 
 -----------------
 
 **qRNG** is a python package that generates truly random numbers via quantum mechanics. It does this by using IBM's [**QISKit**](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers.
 
-### Installation
+## Installation
 You can use the pip package manager to install the current release of qRNG (along with its dependencies):
 ```
 pip install qrng
@@ -16,15 +16,28 @@ Upgrading is as simple as:
 ```
 pip install qrng -U
 ```
+## Tutorial
+Now you can try generating your first random number. First open python in the shell or use an IDE:
+```shell
+$ python
+```
+Now try generating a random 32-bit integer (note that until a particular quantum computer has been specified, qRNG uses a simulator rather than a real QPC):
+```python
+>>> import qrng
+>>> qrng.get_random_int32()
+3408681298
+```
 
-### What is Random Number Generation?
+For a more detailed tutorial, including connecting to quantum hardware, click here.
+
+## What is Random Number Generation?
 There are a variety of applications that require a source of random data in order to work effectively (e.g. simulations and cryptography). To that end, we make use of random number generators (RNGs) to generate sequences of numbers that are, ideally, indistinguishable from random noise.
 
 There are two types of RNGs: Pseudo-RNGs (PRNGs) and True RNGs (TRNGs). Pseudo-RNGs, while not truly and statistically random, are used in a variety of applications as their output is 'random enough' for many purposes.
 
-For a True RNGs, however, an actual piece of hardware is required to measure some random process in the real world as no deterministic computer program could suffice. These devices vary from pieces of radioactive material connected via USB to apparatuses that measure atmospheric noise.
+For a True RNG, however, an actual piece of hardware is required to measure some random process in the real world as no computer program could suffice due to being deterministic in nature. These devices vary from apparatuses that measure atmospheric noise to pieces of radioactive material connected via USB.
 
-### Why Quantum?
+## Why Quantum?
 Modern physics has shown us that there are really only two types of events that can happen in the universe: the unitary transformation of a quantum system, and quantum wavefunction collapse (i.e. **measurement**). The former being a totally deterministic process and the latter being a random one.
 
 Indeed, all randomness in the universe (as far we know) is the result of the collapse of quantum systems upon measurement. In a sense, this is randomness in its purest form and the underlying source of it in any TRNG.
@@ -37,5 +50,5 @@ The point of this package then, besides it being a fun side project, is to cut o
 
 There is a 50-50 chance of measuring the above state as a 0 or 1 and we can continually iterate this process for as many random bits as we require.
 
-### Practicality
+## Practicality
 Of course, while the numbers generated from a quantum computer are amongst the most random, the practicality of connecting to one IBM's quantum computers for a large amount of said numbers is nonexistent. For most real world use cases that require such high-caliber random numbers, an off the shelf hardware RNG would suffice.
