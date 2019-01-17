@@ -4,14 +4,14 @@
 
 -----------------
 
-**qRNG** is an open-source python package that generates truly random numbers via cloud based quantum computers. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers:
+**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers:
 
 - `ibmqx4`
 - `ibmqx5`
 - `ibmqx_16_melborne`
 
 ## Installation
-You can use the pip package manager to install the current release of qRNG (along with its dependencies):
+You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
 ```
 pip install qrng
 ```
