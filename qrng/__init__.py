@@ -5,10 +5,17 @@ from qiskit import IBMQ
 import math
 import struct
 
-_backend = qiskit.BasicAer.get_backend('qasm_simulator')
 _circuit = None
 _bitCache = ''
-
+def set_provider_as_IBMQ(token):
+  global provider
+  if token == '':
+    provider = qiskit.BasicAer 
+  else: 
+    IBMQ.save_account(token)
+    IBMQ.load_account()
+    provider = IBMQ.get_provider('ibm-q')
+ 
 def _set_qubits(n):
     global _circuit
     qr = qiskit.QuantumRegister(n)
@@ -18,17 +25,22 @@ def _set_qubits(n):
     _circuit.measure(qr,cr) # Collapses qubit to either 1 or 0 w/ equal prob.
 
 _set_qubits(8) # Default Circuit is 8 Qubits
-
+ 
 def set_backend(b = 'qasm_simulator'):
     global _backend
-    if b == 'ibmqx4' or b == 'ibmqx5':
-        _backend = IBMQ.get_backend(b)
+    global provider
+    if b == 'ibmq_london' or b == 'ibmq_burlington' or b == 'ibmq_essex'\
+     or b == 'ibmq_ourense' or b == 'ibmq_vigo' or b == 'ibmqx2' :
+        _backend = provider.get_backend(b)
         _set_qubits(5)
     elif b == 'ibmq_16_melbourne':
-        _backend = IBMQ.get_backend(b)
-        _set_qubits(16)
+        _backend = provider.get_backend(b)
+        _set_qubits(15)
+    elif b == 'ibmq_armonk':
+        _backend = provider.get_backend(b)
+        _set_qubits(1)        
     elif b == 'ibmq_qasm_simulator':
-        _backend = IBMQ.get_backend(b)
+        _backend = provider.get_backend(b)
         _set_qubits(32)
     else:
         _backend = qiskit.BasicAer.get_backend('qasm_simulator')
@@ -41,7 +53,7 @@ def _bit_from_counts(counts):
 # Populates the bitCache with at least n more bits.
 def _request_bits(n):
     global _bitCache
-    iterations = math.ceil(n/_circuit.width())
+    iterations = math.ceil(n/_circuit.width()*2)
     for _ in range(iterations):
         # Create new job and run the quantum circuit
         job = qiskit.execute(_circuit, _backend, shots=1)
