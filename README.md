@@ -4,11 +4,19 @@
 
 -----------------
 
-**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers:
+**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their publicly accessible quantum computers:
 
-- `ibmqx4`
-- `ibmqx5`
-- `ibmqx_16_melborne`
+- `ibmq_armonk` 1 qubit
+- `ibmq_london` 5 qubits
+- `ibmq_burlington` 5 qubits
+- `ibmq_essex` 5 qubits
+- `ibmq_ourense` 5 qubits
+- `ibmq_vigo` 5 qubits
+- `ibmqx2` 5 qubits
+- `ibmq_qasm_simulator` 32 qubits (simulated)
+- `qasm_simulator` 8 qubits (simulated)
+
+Note that you need to input your IBMQ API token (make an IBMQ account [here](https://quantum-computing.ibm.com/)) to access any of these quantum computers/simulators, except for  `qasm_simulator` which can be accessed locally via the instructions below.
 
 ## Installation
 You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
@@ -25,11 +33,26 @@ Now you can try generating your first random number. First open python in the sh
 ```shell
 $ python
 ```
-Now try generating a random 32-bit integer (note that until a particular quantum computer has been specified, qRNG uses a simulator rather than a real QPC):
+Now let's connect qRNG to our IBMQ account and generate some numbers:
 ```python
 >>> import qrng
->>> qrng.get_random_int32()
-3408681298
+>>> qrng.set_provider_as_IBMQ('YOUR_IBMQ_TOKEN_HERE') #the IBMQ API token from your dashboard
+>>> qrng.set_backend('ibmq_london') #connect to the 5 qubit 'ibmq_london' quantum computer
+>>> qrng.get_random_int32() #generate a random 32 bit integer
+3834878552
+>>> qrng.get_random_float(0,1) #generate a random 32 bit float between 0 to 1
+0.6610504388809204
+```
+
+If you don't need or want to use IBM's actual quantum computers, you can instead just use the default backend like so:
+```python
+>>> import qrng
+>>> qrng.set_provider_as_IBMQ('') #empty string denotes local backend which can only use 'qasm_simulator'
+>>> qrng.set_backend() #no args defaults to `qasm_simulator`
+>>> qrng.get_random_int64() #generate a random 64 bit integer
+10110319200202513540
+>>> qrng.get_random_double(0,1) #generate a random 64 bit double between 0 to 1
+0.9843570286395331
 ```
 
 <!-- For a more detailed tutorial, including connecting to quantum hardware, click here. -->
@@ -49,7 +72,7 @@ Indeed, all randomness in the universe (as far we know) is the result of the col
 The point of this package then, besides it being a fun side project, is to cut out the middle man entirely, whether it be a radioactive isotope or the thermal noise in your PC, and simply measure an actual quantum system. For example, we can prepare the following state in a quantum computer:
 
 <p align="center">
-  <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle" title="\left|{\psi}\right\rangle =\frac{1}{\sqrt 2}\left|{0}\right\rangle +\frac{1}{\sqrt 2}\left|{1}\right\rangle" />
+  <img src="https://latex.codecogs.com/png.latex?%5Cbg_black%20%5Clarge%20%5Cdpi%7B150%7D%26space%3B%5Cleft%7C%7B%5Cpsi%7D%5Cright%5Crangle%26space%3B%3D%5Cfrac%7B1%7D%7B%5Csqrt%26space%3B2%7D%5Cleft%7C%7B0%7D%5Cright%5Crangle%26space%3B%26plus%3B%5Cfrac%7B1%7D%7B%5Csqrt%26space%3B2%7D%5Cleft%7C%7B1%7D%5Cright%5Crangle" />
 </p>
 
 There is a 50-50 chance of measuring the above state as a 0 or 1 and we can continually iterate this process for as many random bits as we require. Note that while such a simple algorithm doesn't require a full-blown quantum computer, there are some random algorithms that do.
