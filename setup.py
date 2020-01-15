@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="qrng",
-    version="0.1.1.1",
+    version="0.1.2",
     author="Ozaner Hansha",
     author_email="ozanerhansha@gmail.com",
     description="A Quantum Random Number Generator using IBM's Qiskit",

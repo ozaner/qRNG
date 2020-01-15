@@ -4,11 +4,19 @@
 
 -----------------
 
-**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their 3 publicly accessible quantum computers:
+**qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their publicly accessible quantum computers:
 
-- `ibmqx4`
-- `ibmqx5`
-- `ibmqx_16_melborne`
+- `ibmq_armonk` 1 qubit
+- `ibmq_london` 5 qubits
+- `ibmq_burlington` 5 qubits
+- `ibmq_essex` 5 qubits
+- `ibmq_ourense` 5 qubits
+- `ibmq_vigo` 5 qubits
+- `ibmqx2` 5 qubits
+- `ibmq_qasm_simulator` 32 qubits (simulated)
+- `qasm_simulator` 8 qubits (simulated)
+
+Note that you need to input your IBMQ API token to access any of these quantum computers/simulators except for the last one `qasm_simulator`.
 
 ## Installation
 You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
@@ -25,11 +33,22 @@ Now you can try generating your first random number. First open python in the sh
 ```shell
 $ python
 ```
-Now try generating a random 32-bit integer (note that until a particular quantum computer has been specified, qRNG uses a simulator rather than a real QPC):
+Now try generating a random 32-bit integer:
 ```python
 >>> import qrng
+>>> qrng.set_provider_as_IBMQ('YOUR_IBMQ_TOKEN_HERE')
+>>> qrng.set_backend('ibmq_london')
 >>> qrng.get_random_int32()
-3408681298
+3834878552
+```
+
+If you don't need or want to use IBM's actual quantum computers, you can instead just use the default backend like so:
+```python
+>>> import qrng
+>>> qrng.set_provider_as_IBMQ('') #empty string denotes default backend
+>>> qrng.set_backend() #defaults to `qasm_simulator`
+>>> qrng.get_random_int32()
+2760805561
 ```
 
 <!-- For a more detailed tutorial, including connecting to quantum hardware, click here. -->
