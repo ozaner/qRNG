@@ -16,7 +16,7 @@
 - `ibmq_qasm_simulator` 32 qubits (simulated)
 - `qasm_simulator` 8 qubits (simulated)
 
-Note that you need to input your IBMQ API token to access any of these quantum computers/simulators except for the last one `qasm_simulator`.
+Note that you need to input your IBMQ API token to access any of these quantum computers/simulators except for `qasm_simulator` which can be accessed locally via the instructions below.
 
 ## Installation
 You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
@@ -33,22 +33,26 @@ Now you can try generating your first random number. First open python in the sh
 ```shell
 $ python
 ```
-Now try generating a random 32-bit integer:
+Now let's connect qRNG to our IBMQ account and generate some numbers:
 ```python
 >>> import qrng
 >>> qrng.set_provider_as_IBMQ('YOUR_IBMQ_TOKEN_HERE')
 >>> qrng.set_backend('ibmq_london')
->>> qrng.get_random_int32()
+>>> qrng.get_random_int32() # generate a random 32 bit integer
 3834878552
+>>> qrng.get_random_float(0,1) # Generate a random 32bit float between 0 to 1
+0.6610504388809204
 ```
 
 If you don't need or want to use IBM's actual quantum computers, you can instead just use the default backend like so:
 ```python
 >>> import qrng
->>> qrng.set_provider_as_IBMQ('') #empty string denotes default backend
->>> qrng.set_backend() #defaults to `qasm_simulator`
->>> qrng.get_random_int32()
-2760805561
+>>> qrng.set_provider_as_IBMQ('') # empty string denotes default backend
+>>> qrng.set_backend() # no args defaults to `qasm_simulator`
+>>> qrng.get_random_int64() # generate a random 64 bit integer
+10110319200202513540
+>>> qrng.get_random_double(0,1) # Generate a random 64bit double between 0 to 1
+0.9843570286395331
 ```
 
 <!-- For a more detailed tutorial, including connecting to quantum hardware, click here. -->
