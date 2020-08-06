@@ -3,6 +3,7 @@
 </p>
 
 -----------------
+[![DOI](https://zenodo.org/badge/164359657.svg)](https://zenodo.org/badge/latestdoi/164359657)
 
 **qRNG** is an open-source quantum random number generator written in python. It achieves this by using IBM's [QISKit](https://qiskit.org/) API to communicate with any one of their publicly accessible quantum computers:
 
