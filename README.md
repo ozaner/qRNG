@@ -73,7 +73,7 @@ Indeed, all randomness in the universe (as far we know) is the result of the col
 The point of this package then, besides it being a fun side project, is to cut out the middle man entirely, whether it be a radioactive isotope or the thermal noise in your PC, and simply measure an actual quantum system. For example, we can prepare the following state in a quantum computer:
 
 <p align="center">
-  <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\left|{\psi}\right\rangle&space;=\frac{1}{\sqrt&space;2}\left|{0}\right\rangle&space;&plus;\frac{1}{\sqrt&space;2}\left|{1}\right\rangle" title="\left|{\psi}\right\rangle =\frac{1}{\sqrt 2}\left|{0}\right\rangle +\frac{1}{\sqrt 2}\left|{1}\right\rangle" />
+  <img src="https://latex.codecogs.com/png.latex?%5Cbg_black%20%5Clarge%20%5Cdpi%7B150%7D%26space%3B%5Cleft%7C%7B%5Cpsi%7D%5Cright%5Crangle%26space%3B%3D%5Cfrac%7B1%7D%7B%5Csqrt%26space%3B2%7D%5Cleft%7C%7B0%7D%5Cright%5Crangle%26space%3B%26plus%3B%5Cfrac%7B1%7D%7B%5Csqrt%26space%3B2%7D%5Cleft%7C%7B1%7D%5Cright%5Crangle" />
 </p>
 
 There is a 50-50 chance of measuring the above state as a 0 or 1 and we can continually iterate this process for as many random bits as we require. Note that while such a simple algorithm doesn't require a full-blown quantum computer, there are some random algorithms that do.
