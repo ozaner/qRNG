@@ -29,22 +29,13 @@ _set_qubits(8) # Default Circuit is 8 Qubits
 def set_backend(b = 'qasm_simulator'):
     global _backend
     global provider
-    if b == 'ibmq_london' or b == 'ibmq_burlington' or b == 'ibmq_essex'\
-     or b == 'ibmq_ourense' or b == 'ibmq_vigo' or b == 'ibmqx2' :
+    available_backends = provider.backends(b, filters = lambda x: x.status().operational == True)
+    if (b is not '') and (b in str(available_backends)):
         _backend = provider.get_backend(b)
-        _set_qubits(5)
-    elif b == 'ibmq_16_melbourne':
-        _backend = provider.get_backend(b)
-        _set_qubits(15)
-    elif b == 'ibmq_armonk':
-        _backend = provider.get_backend(b)
-        _set_qubits(1)        
-    elif b == 'ibmq_qasm_simulator':
-        _backend = provider.get_backend(b)
-        _set_qubits(32)
     else:
+        print(str(b)+' is not available. Backend is set to qasm_simulator.')
         _backend = qiskit.BasicAer.get_backend('qasm_simulator')
-        _set_qubits(8)
+    _set_qubits(_backend.configuration().n_qubits)
 
 # Strips QISKit output to just a bitstring.
 def _bit_from_counts(counts):
