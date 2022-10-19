@@ -20,7 +20,7 @@
 Note that you need to input your IBMQ API token (make an IBMQ account [here](https://quantum-computing.ibm.com/)) to access any of these quantum computers/simulators, except for  `qasm_simulator` which can be accessed locally via the instructions below.
 
 ## Installation
-You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG (along with its dependencies):
+You can use the pip package manager to install the [current release](https://pypi.org/project/qrng/) of qRNG:
 ```
 pip install qrng
 ```

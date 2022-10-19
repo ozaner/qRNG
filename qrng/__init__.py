@@ -108,6 +108,8 @@ def get_random_float(min: float = 0, max: float = 1) -> float:
     Parameters:
         min (float): The minimum possible returned float (inclusive). Default is 0.0
         max (float): The maximum possible returned float (exclusive). Default is 1.0
+
+    Algorithm provided by: https://experilous.com/1/blog/post/perfect-fast-random-floating-point-numbers.
     """
     unpacked = 0x3F800000 | get_random_int32() >> 9
     packed = struct.pack('I',unpacked)
@@ -121,6 +123,8 @@ def get_random_double(min: float = 0, max: float = 1) -> float:
     Parameters:
         min (float): The minimum possible returned double (inclusive). Default is 0.0
         max (float): The maximum possible returned double (exclusive). Default is 1.0
+
+    Algorithm provided by: https://experilous.com/1/blog/post/perfect-fast-random-floating-point-numbers.
     """
     unpacked = 0x3FF0000000000000 | get_random_int64() >> 12
     packed = struct.pack('Q',unpacked)
