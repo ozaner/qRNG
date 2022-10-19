@@ -1,7 +1,0 @@
-README.md
-setup.py
-qrng/__init__.py
-qrng.egg-info/PKG-INFO
-qrng.egg-info/SOURCES.txt
-qrng.egg-info/dependency_links.txt
-qrng.egg-info/top_level.txt

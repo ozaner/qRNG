@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="qrng",
-    version="0.1.2",
+    version="0.1.3",
     author="Ozaner Hansha",
     author_email="ozanerhansha@gmail.com",
     description="A Quantum Random Number Generator using IBM's Qiskit",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ozanerhansha/qRNG",
+    url="https://github.com/ozaner/qRNG",
     packages=setuptools.find_packages(),
     py_modules = ['qrng'],
     classifiers=[
